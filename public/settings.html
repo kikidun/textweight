@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TextWeight - Settings</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Settings</h1>
+      <nav>
+        <a href="/">Dashboard</a>
+        <button id="logout-btn" class="link-btn">Logout</button>
+      </nav>
+    </header>
+
+    <main class="settings-main">
+      <form id="settings-form">
+        <!-- Display Unit -->
+        <div class="form-group">
+          <label for="display-unit">Display Unit</label>
+          <select id="display-unit" name="display_unit">
+            <option value="lbs">Pounds (lbs)</option>
+            <option value="kg">Kilograms (kg)</option>
+          </select>
+        </div>
+
+        <!-- Timezone -->
+        <div class="form-group">
+          <label for="timezone">Timezone</label>
+          <select id="timezone" name="timezone">
+            <option value="America/New_York">Eastern (New York)</option>
+            <option value="America/Chicago">Central (Chicago)</option>
+            <option value="America/Denver">Mountain (Denver)</option>
+            <option value="America/Los_Angeles">Pacific (Los Angeles)</option>
+            <option value="America/Anchorage">Alaska</option>
+            <option value="Pacific/Honolulu">Hawaii</option>
+            <option value="Europe/London">London</option>
+            <option value="Europe/Paris">Paris</option>
+            <option value="Europe/Berlin">Berlin</option>
+            <option value="Asia/Tokyo">Tokyo</option>
+            <option value="Asia/Shanghai">Shanghai</option>
+            <option value="Australia/Sydney">Sydney</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn primary">Save Settings</button>
+      </form>
+
+      <!-- Phone Number Section -->
+      <section class="phone-section">
+        <h2>Phone Number</h2>
+        <p id="current-phone">Loading...</p>
+
+        <div id="phone-change-section" class="hidden">
+          <form id="phone-request-form">
+            <label for="new-phone">New Phone Number</label>
+            <input type="tel" id="new-phone" name="new_phone" placeholder="(555) 123-4567" required>
+            <button type="submit" class="btn">Send Verification</button>
+          </form>
+        </div>
+
+        <div id="phone-verify-section" class="hidden">
+          <p class="info">Enter the code sent to your new number</p>
+          <form id="phone-verify-form">
+            <label for="verify-code">Verification Code</label>
+            <input type="text" id="verify-code" name="code" placeholder="123456" maxlength="6" required>
+            <button type="submit" class="btn primary">Verify & Update</button>
+          </form>
+          <button id="phone-cancel-btn" class="link-btn">Cancel</button>
+        </div>
+
+        <button id="change-phone-btn" class="link-btn">Change phone number</button>
+      </section>
+
+      <!-- Import Section -->
+      <section class="import-section">
+        <h2>Import Data</h2>
+        <p>Import weight entries from a CSV file.</p>
+        <input type="file" id="import-file" accept=".csv">
+        <div id="import-preview" class="hidden">
+          <h4>Preview (<span id="preview-count">0</span> entries)</h4>
+          <table id="preview-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Weight</th>
+              </tr>
+            </thead>
+            <tbody id="preview-body"></tbody>
+          </table>
+          <div class="import-actions">
+            <button id="import-cancel" class="btn">Cancel</button>
+            <button id="import-confirm" class="btn primary">Import</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="message" class="message hidden"></div>
+    </main>
+  </div>
+
+  <script src="/js/settings.js"></script>
+</body>
+</html>

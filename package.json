@@ -1,0 +1,21 @@
+{
+  "name": "textweight",
+  "version": "1.0.0",
+  "description": "SMS-based weight tracking application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "setup": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.6.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "twilio": "^5.4.0",
+    "uuid": "^11.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

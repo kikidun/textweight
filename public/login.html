@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TextWeight - Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container login-container">
+    <h1>TextWeight</h1>
+    <p class="subtitle">SMS-based weight tracking</p>
+
+    <div id="step-phone" class="login-step">
+      <form id="phone-form">
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="(555) 123-4567"
+          required
+          autocomplete="tel"
+        >
+        <button type="submit" id="send-code-btn">Send Code</button>
+      </form>
+    </div>
+
+    <div id="step-code" class="login-step hidden">
+      <p class="info">Enter the 6-digit code sent to your phone</p>
+      <form id="code-form">
+        <label for="code">Verification Code</label>
+        <input
+          type="text"
+          id="code"
+          name="code"
+          placeholder="123456"
+          maxlength="6"
+          pattern="[0-9]{6}"
+          required
+          autocomplete="one-time-code"
+        >
+        <button type="submit" id="verify-btn">Verify</button>
+      </form>
+      <button id="back-btn" class="link-btn">Use different number</button>
+    </div>
+
+    <div id="error-message" class="error hidden"></div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>
