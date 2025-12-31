@@ -78,6 +78,11 @@ app.get('/settings', (req, res) => {
   }
 });
 
+// Consent page (public)
+app.get('/consent', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'consent.html'));
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
