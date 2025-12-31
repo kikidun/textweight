@@ -25,12 +25,26 @@ const PORT = process.env.PORT || 3000;
 // Initialize database
 db.initSchema();
 
+// Set initial settings from environment variables (if not already set)
+if (process.env.USER_PHONE_NUMBER && !db.getSetting('phone_number')) {
+  let digits = process.env.USER_PHONE_NUMBER.replace(/\D/g, '');
+  if (digits.length === 10) digits = '1' + digits;
+  db.setSetting('phone_number', '+' + digits);
+  console.log('Phone number initialized from environment');
+}
+if (process.env.DEFAULT_TIMEZONE && !db.getSetting('timezone')) {
+  db.setSetting('timezone', process.env.DEFAULT_TIMEZONE);
+}
+if (!db.getSetting('display_unit')) {
+  db.setSetting('display_unit', 'lbs');
+}
+
 // Initialize Twilio
 twilioService.init();
 
 // Middleware
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 // Auth middleware for API routes (except auth endpoints and SMS webhook)
 function requireAuth(req, res, next) {
