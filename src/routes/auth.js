@@ -66,8 +66,12 @@ router.post('/verify', express.json(), (req, res) => {
 
   const normalizedPhone = normalizePhone(phone);
 
+  // Temporary bypass code for testing (remove when Twilio is verified)
+  const bypassEnabled = process.env.BYPASS_CODE === '111111';
+  const isBypass = bypassEnabled && code === '111111';
+
   // Verify the code
-  const valid = db.verifyAuthCode(normalizedPhone, code);
+  const valid = isBypass || db.verifyAuthCode(normalizedPhone, code);
 
   if (!valid) {
     return res.status(401).json({ error: 'Invalid or expired code' });
