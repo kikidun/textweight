@@ -58,7 +58,9 @@ function validateRequest(req) {
   if (!authToken) return true; // Skip validation if not configured
 
   const signature = req.headers['x-twilio-signature'];
-  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  // Use X-Forwarded-Proto header when behind a proxy (Railway, Render, etc.)
+  const proto = req.get('x-forwarded-proto') || req.protocol;
+  const url = `${proto}://${req.get('host')}${req.originalUrl}`;
 
   return twilio.validateRequest(authToken, signature, url, req.body);
 }
